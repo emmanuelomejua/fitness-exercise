@@ -5,7 +5,7 @@ import HeroBaanerImage from '../assets/images/banner.png'
 const HeroBanner = () => {
   return (
     <Box sx={{ 
-        mt: { lg: '200px', xs: '50px' },
+        mt: { lg: '210px', xs: '50px' },
         ml: { sm: '40px'}
      }} position='relative' p='20px'>
         <Typography color='#ff2625' fontWeight={600} fontSize='25px' mb={4}>Fitness Club</Typography>
