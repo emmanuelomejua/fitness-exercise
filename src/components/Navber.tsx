@@ -13,7 +13,7 @@ const Navber = () => {
 
       <Stack direction='row' gap='40px' fontSize='24px' alignItems='flex-end'>
         <Link to='/' style={{ textDecoration: 'none', color: '#3a1212', borderBottom: '1px solid #ff2625' }}>Home</Link>
-        <a href='#excercise' style={{ textDecoration: 'none', color: '#3a1212' }}> 
+        <a href='#excercises' style={{ textDecoration: 'none', color: '#3a1212' }}> 
         Excercise
         </a>
       </Stack>
