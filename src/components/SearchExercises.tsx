@@ -1,20 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Stack, Button } from '@mui/material';
+import HorizontalScollBar from './HorizontalScollBar';
+import { fetchData, exerciseOptions, url } from '../utils/fetchData';
 
-const SearchExercises = () => {
+const SearchExercises = ({bodyPart, setExercises, setBodyPart}) => {
 
     const [search, setSearch] = useState('');
+    const [exercises, setExercises] = useState([]);
+
+    const [bodyParts, setBodyParts] = useState<string | unknown>([]);
 
 
     useEffect(() => {
-
+        const fetchedExerciseData = async () => {
+            try {
+                const bodyPartsData = await fetchData(`${url}bodyPartList`, exerciseOptions);
+    
+                setBodyParts(['all', ...bodyPartsData]);
+            } catch (error) {
+                
+            }
+        }
+        fetchedExerciseData();
     }, [])
 
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
+        if(search){
+            const exerciseData = await fetchData(url, exerciseOptions);
 
+            const searchedExercise = exerciseData.filter((exercise: any) => exercise.name.toLowerCase().includes(search)) 
+                                || exerciseData.filter((exercise: any) => exercise.target.toLowerCase().includes(search))
+                                || exerciseData.filter((exercise: any) => exercise.equipment.toLowerCase().includes(search))
+                                || exerciseData.filter((exercise: any) => exercise.bodyPart.toLowerCase().includes(search))
+
+            setSearch('');
+            setExercises(searchedExercise);
+        }
     }
-    
+
+
   return (
     <Stack alignItems='center' mt='37px' justifyContent='center' p='20px'>
         <Typography fontSize={700} mb='50px' textAlign='center' sx={{
@@ -52,6 +77,12 @@ const SearchExercises = () => {
                 position: 'absolute',
                 right: 0,
              }}>Search</Button>
+        </Box>
+
+        <Box sx={{
+            width: '100%', position: 'relative', p: '20px'
+        }}>
+            <HorizontalScollBar data={bodyParts} bodyPart={bodyPart} setBodyParts={setBodyParts} />
         </Box>
     </Stack>
   )
