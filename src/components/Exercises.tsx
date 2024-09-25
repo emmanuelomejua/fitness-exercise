@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react';
+import { IData } from './type';
 
-const Exercises = () => {
+
+
+const Exercises:FC<IData> = () => {
   return (
     <div>Exercises</div>
   )

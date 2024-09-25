@@ -1,12 +1,10 @@
 import { Box } from '@mui/material'
 import React, { FC } from 'react'
 import BodyParts from './BodyParts'
+import { hData } from './type'
 
-type tData = {
-    data: any
-}
 
-const HorizontalScollBar: FC<tData> = ({data}) => {
+const HorizontalScollBar: FC<hData> = ({data, bodyPart, setBodyPart}) => {
   return (
     <div>
         {data?.map(((item: any) => (
@@ -16,7 +14,7 @@ const HorizontalScollBar: FC<tData> = ({data}) => {
                 title={item.title}
                 m='0 30px'
             >
-                <BodyParts item={item}/>
+                <BodyParts item={item} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
             </Box>
         )))
         }

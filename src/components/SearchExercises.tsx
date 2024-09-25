@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Box, Typography, TextField, Stack, Button } from '@mui/material';
 import HorizontalScollBar from './HorizontalScollBar';
 import { fetchData, exerciseOptions, url } from '../utils/fetchData';
+import { IData } from './type';
 
-const SearchExercises = ({bodyPart, setExercises, setBodyPart}) => {
+
+const SearchExercises:FC<IData> = ({ bodyPart, setExercises, setBodyPart }) => {
 
     const [search, setSearch] = useState('');
-    const [exercises, setExercises] = useState([]);
 
     const [bodyParts, setBodyParts] = useState<string | unknown>([]);
 
@@ -18,7 +19,7 @@ const SearchExercises = ({bodyPart, setExercises, setBodyPart}) => {
     
                 setBodyParts(['all', ...bodyPartsData]);
             } catch (error) {
-                
+                throw new Error()
             }
         }
         fetchedExerciseData();
@@ -82,7 +83,7 @@ const SearchExercises = ({bodyPart, setExercises, setBodyPart}) => {
         <Box sx={{
             width: '100%', position: 'relative', p: '20px'
         }}>
-            <HorizontalScollBar data={bodyParts} bodyPart={bodyPart} setBodyParts={setBodyParts} />
+            <HorizontalScollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} />
         </Box>
     </Stack>
   )

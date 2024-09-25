@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
+import { hData } from './type';
+import { Typography, Stack } from '@mui/material';
+import Icon from '../assets/icons/gym.png';
 
 
-type iItem = {
-    item: any;
-}
-
-const BodyParts:FC<iItem> = () => {
+const BodyParts:FC<hData> = () => {
   return (
-    <div>
-        BodyParts
-    </div>
+    <Stack>
+       <img src={Icon} alt='dumbell' className='body-part-icon'/>
+    </Stack>
   )
 }
 
