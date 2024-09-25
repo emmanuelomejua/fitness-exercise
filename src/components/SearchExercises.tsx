@@ -14,12 +14,13 @@ const SearchExercises = () => {
     const handleSearch = () => {
 
     }
+    
   return (
     <Stack alignItems='center' mt='37px' justifyContent='center' p='20px'>
         <Typography fontSize={700} mb='50px' textAlign='center' sx={{
             fontSize: { lg: '40px', xs: '30px' }
         }}>
-            Awesome Excercises you <br/> should know
+            Awesome Excercises You <br/> Should Know
         </Typography>
 
         <Box position='relative' mb='70px'>
