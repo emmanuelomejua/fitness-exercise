@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import { Pagination } from '@mui/material';
 import { IData } from './type';
+import { fetchData, exerciseOptions } from '../utils/fetchData';
 
 
 
