@@ -1,7 +1,8 @@
 export interface IData {
     bodyPart: any;
-    setBodyPart: any;
+    setBodyPart?: any;
     setExercises: any;
+    exercises?: string[];
 }
 
 
