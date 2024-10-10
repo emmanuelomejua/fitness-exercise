@@ -12,7 +12,7 @@ export interface IExercise {
 interface IData {
   bodyPart: any;
   setBodyPart?: Dispatch<SetStateAction<string>>;
-  setExercises: Dispatch<SetStateAction<IExercise[]>>;
+  setExercises: Dispatch<SetStateAction<IExercise[]>> ;
   exercises?: IExercise[];
 }
 

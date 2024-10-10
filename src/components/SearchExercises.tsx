@@ -2,7 +2,7 @@ import React, { useState, useEffect, FC } from 'react';
 import { Box, Typography, TextField, Stack, Button } from '@mui/material';
 import HorizontalScollBar from './HorizontalScollBar';
 import { fetchData, exerciseOptions, url } from '../utils/fetchData';
-import { IData } from './type';
+import { IData, Exercise } from './type';
 
 
 const SearchExercises:FC<IData> = ({ bodyPart, setExercises, setBodyPart }) => {
@@ -15,7 +15,7 @@ const SearchExercises:FC<IData> = ({ bodyPart, setExercises, setBodyPart }) => {
     useEffect(() => {
         const fetchedExerciseData = async () => {
             try {
-                const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+                const bodyPartsData = await fetchData(`${url}/bodyPartList`, exerciseOptions);
     
                 setBodyParts(['all', ...bodyPartsData]);
             } catch (error) {
@@ -28,14 +28,16 @@ const SearchExercises:FC<IData> = ({ bodyPart, setExercises, setBodyPart }) => {
 
     const handleSearch = async () => {
         if(search){
-            const exerciseData = await fetchData(url, exerciseOptions);
-            console.log(exerciseData);
+            const exerciseData: Exercise[] = await fetchData(url, exerciseOptions);
 
-            const searchedExercise = exerciseData?.filter((exercise: any) => exercise.name.toLowerCase().includes(search)) 
-                                || exerciseData.filter((exercise: any) => exercise.target.toLowerCase().includes(search))
-                                || exerciseData.filter((exercise: any) => exercise.equipment.toLowerCase().includes(search))
-                                || exerciseData.filter((exercise: any) => exercise.bodyPart.toLowerCase().includes(search))
-
+            const searchedExercise = exerciseData.filter((exercise: Exercise) => 
+                exercise.name?.toLowerCase().includes(search) ||
+                exercise.target?.toLowerCase().includes(search) ||
+                exercise.equipment?.toLowerCase().includes(search) ||
+                exercise.bodyPart?.toLowerCase().includes(search)
+            );
+    
+                            
             setSearch('');
             setExercises(searchedExercise);
         }

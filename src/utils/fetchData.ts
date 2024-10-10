@@ -1,5 +1,5 @@
 
-export const url = 'https://exercisedb.p.rapidapi.com/exercises/';
+export const url = 'https://exercisedb.p.rapidapi.com/exercises';
 
 export const exerciseOptions = {
     method: 'GET',
