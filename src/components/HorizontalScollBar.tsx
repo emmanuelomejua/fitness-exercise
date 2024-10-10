@@ -35,19 +35,21 @@ const HorizontalScollBar: FC<hData> = ({data, bodyPart, setBodyPart}) => {
   
 
   return (
-    <ScrollMenu LeftArrow={LeftArrow}  RightArrow={RightArrow}>
-        {data?.map(((item: any) => (
-            <Box
-                key={item}
-                data-itemid={item} 
-                title={item}
-                m='0 40px'
-            >
-                <BodyParts item={item} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
-            </Box>
-        )))
+    <Box sx={{ overflow: 'hidden', width: '100%' }}>
+      <ScrollMenu LeftArrow={LeftArrow}  RightArrow={RightArrow}>
+          {data?.map(((item: any) => (
+              <Box
+                  key={item}
+                  data-itemid={item} 
+                  title={item}
+                  m='0 40px'
+                  >
+                  <BodyParts item={item} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
+              </Box>
+          )))
         }
-    </ScrollMenu>
+      </ScrollMenu>
+    </Box>
   )
 }
 
