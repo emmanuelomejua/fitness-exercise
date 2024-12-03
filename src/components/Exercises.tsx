@@ -3,6 +3,7 @@ import { Pagination, Box, Typography, Stack } from '@mui/material';
 import { fetchData, exerciseOptions } from '../utils/fetchData';
 import ExerciseCard from './ExerciseCard';
 import Loader from './Loader';
+import { url } from '../utils/fetchData'
 
 
 
@@ -12,7 +13,6 @@ export interface IExercise {
   gifUrl: string;
   bodyPart: string;
   target: string;
-  length?: number | sring;
 }
 
 
@@ -24,7 +24,7 @@ interface IData {
 }
 
 
-const Exercises:FC<IData> = ({ setExercises, bodyPart, exercises }) => {
+const Exercises:FC<IData> = ({ setExercises, bodyPart, exercises=[] }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
@@ -34,7 +34,7 @@ const Exercises:FC<IData> = ({ setExercises, bodyPart, exercises }) => {
       let exercisesData = [];
 
       if (bodyPart === 'all') {
-        exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+        exercisesData = await fetchData(url, exerciseOptions);
       } else {
         exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
       }
@@ -63,14 +63,14 @@ const Exercises:FC<IData> = ({ setExercises, bodyPart, exercises }) => {
       <Typography variant='h3' mb='30px'>Showing Result</Typography>
 
       <Stack direction='row' sx={{gap: {lg: '85px', sm: '35px'}}} flexWrap='wrap' justifyContent='center'>
-      { exercises?.map((exercise, index) => (
+      { exercises.map((exercise, index) => (
         <ExerciseCard exercise={exercise} key={index}/>
       ))
       }
       </Stack>
 
       <Stack sx={{ mt: { lg: '114px', xs: '70px' } }} alignItems="center">
-        {exercises?.length > 9 && (
+        {exercises.length > 9 && (
           <Pagination
             color="standard"
             shape="rounded"
